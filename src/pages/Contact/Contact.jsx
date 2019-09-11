@@ -4,7 +4,7 @@ import { Layout } from '../../components';
 
 const Contact = () =>
   <Layout>
-    Contactez-moi!
+    <h1>Contactez-moi!</h1>
   </Layout>
 ;
 
