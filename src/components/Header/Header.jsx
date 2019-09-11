@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 
 import { Link } from 'react-router-dom';
+import { LoginButton } from '..';
 
 const Component = () =>
   <header className="App-header" >
@@ -11,6 +12,7 @@ const Component = () =>
         <Link to="/contact"><li>Contact</li></Link>
       </ul>
     </nav>
+    <LoginButton />
   </header>
 ;
 
