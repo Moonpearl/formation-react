@@ -1,16 +1,32 @@
 import React from 'react';
-import './Article.css';
+
+import styled from 'styled-components';
+
+const HOVER_COLOR = '#eee';
+
+const Container = styled.article`
+  margin-bottom: 3em;
+
+  &:hover {
+    background: ${HOVER_COLOR};
+  }
+`;
+
+const Date = styled.div`
+  color: grey;
+  font-size: .75em;
+`;
 
 const Article = (props) => {
   const { className, title, date, content } = props;
 
   return (
-    <article className={`App-article ${className}`}>
+    <Container>
       {/* Commentaire */}
       <h2>{title}</h2>
-      <div className="date">{date}</div>
+      <Date>{date}</Date>
       <p>{content}</p>
-    </article>
+    </Container>
   );
 }
 
