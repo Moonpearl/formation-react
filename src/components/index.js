@@ -5,3 +5,4 @@ export { default as Footer } from './Footer/Footer.jsx';
 export { default as Article } from './Article/Article.jsx';
 export { default as Layout } from './Layout/Layout.jsx';
 export { default as LoginButton } from './LoginButton/LoginButton.jsx';
+export { default as AllArticles } from './AllArticles/AllArticles.jsx';

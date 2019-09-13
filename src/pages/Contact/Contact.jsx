@@ -21,32 +21,9 @@ class TextInput extends Component {
     errorMessage: '',
   }
 
-  handleChange = (event) => {
-    const { required, validate } = this.props;
-
-    const value = event.target.value;
-
-    let errorMessage = '';
-
-    if (validate) {
-      if (!validate(value)) {
-        errorMessage = 'Le contenu du champ n\'est pas valide';
-      }
-    }
-
-    if (required && value.length === 0) {
-      errorMessage = 'Le champ ne doit pas être vide';
-    }
-
-    this.setState({
-      value,
-      errorMessage,
-    });
-  }
-
   render() {
-    const { name } = this.props;
-    const { value, errorMessage } = this.state;
+    const { name, onChange, value } = this.props;
+    const { errorMessage } = this.state;
 
     return (
       <InputBlock>
@@ -55,7 +32,7 @@ class TextInput extends Component {
           name={name}
           type="text"
           value={value}
-          onChange={this.handleChange} />
+          onChange={onChange} />
         <ErrorMessage>{errorMessage}</ErrorMessage>
       </InputBlock>
     );
@@ -65,6 +42,7 @@ class TextInput extends Component {
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   validate: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 const validateEmail = (value) => {
@@ -72,12 +50,49 @@ const validateEmail = (value) => {
 }
 
 class ContactForm extends Component {
+  state = {
+    lastName: '',
+    firstName: '',
+    email: '',
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
+  handleTextInputChange = (event) => {
+    // const { required, validate } = this.props;
+
+    const value = event.target.value;
+
+    // let errorMessage = '';
+
+    // if (validate) {
+    //   if (!validate(value)) {
+    //     errorMessage = 'Le contenu du champ n\'est pas valide';
+    //   }
+    // }
+
+    // if (required && value.length === 0) {
+    //   errorMessage = 'Le champ ne doit pas être vide';
+    // }
+
+    this.setState({
+      [event.target.name]: value,
+      // errorMessage,
+    });
+  }
+
   render() {
+    const { firstName, lastName, email } = this.state;
+
     return (
-      <form>
-        <TextInput name="lastName" required />
-        <TextInput name="firstName" />
-        <TextInput name="email" validate={validateEmail} required />
+      <form onSubmit={this.handleSubmit}>
+        <TextInput name="lastName" required value={lastName} onChange={this.handleTextInputChange} />
+        <TextInput name="firstName" value={firstName} onChange={this.handleTextInputChange} />
+        <TextInput name="email" value={email} validate={validateEmail} required onChange={this.handleTextInputChange} />
+        <input type="submit" />
       </form>
     );
   }
