@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
+import store from '../../redux/store';
 
 class LoginButton extends Component {
-  state = {
-    logged: false,
-  };
-
   handleClick = () => {
-    const { logged } = this.state;
+    const { logged } = this.props;
 
-    this.setState({
-      logged: !logged,
+    store.dispatch({
+      type: (logged ? 'LOG_OUT' : 'LOG_IN' ),
     });
   }
 
   render() {
-    const { logged } = this.state;
+    const { logged } = this.props;
 
     return (
       <button onClick={this.handleClick}>

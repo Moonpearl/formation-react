@@ -11,7 +11,7 @@ class AllArticlesContainer extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return { articles: state.articles }
+  return { articles: state.articles };
 }
 
 export default connect(mapStateToProps)(AllArticlesContainer);

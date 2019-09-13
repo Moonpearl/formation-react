@@ -1,9 +1,15 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = () =>
+const Sidebar = (props) =>
   <aside className="App-sidebar" >
-    Beautiful sidebar
+    <ul>
+      {props.articleTitles.map( (articleTitle, index) =>
+        <li key={index}>
+          {articleTitle}
+        </li>
+      )}
+    </ul>
   </aside>
 ;
 
