@@ -1,11 +1,11 @@
-const initialState = false;
+const initialState = null;
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case 'LOG_IN':
-      return true;
+      return { username: action.username };
     case 'LOG_OUT':
-      return false;
+      return null;
     default:
       return state;
   }

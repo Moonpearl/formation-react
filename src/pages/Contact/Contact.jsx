@@ -58,7 +58,6 @@ class ContactForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
   }
 
   handleTextInputChange = (event) => {

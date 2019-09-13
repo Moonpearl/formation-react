@@ -4,7 +4,6 @@ import { Layout, Article } from '../../components';
 
 const ArticlePage = (props) =>
   <Layout>
-    {console.log(props)}
     <Article {...props.articles[props.match.params.id]} />
   </Layout>
 ;

@@ -4,15 +4,26 @@ import LoginButton from '../../components/LoginButton/LoginButton';
 
 class LoginButtonContainer extends Component {
   render() {
+    console.log(this.props);
+
     return (
-      <LoginButton logged={this.props.logged} />
+      <LoginButton {...this.props} />
     );
   }
 }
 
+const logoutAction = () => ({ type: 'LOG_OUT' });
+const loginAction = (username) => ({ type: 'LOG_IN', username });
+
 function mapStateToProps(state, ownProps) {
-  console.log('Store State =', state);
   return { logged: state.logged };
 }
 
-export default connect(mapStateToProps)(LoginButtonContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch(logoutAction()),
+    login: (username) => dispatch(loginAction(username)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginButtonContainer);

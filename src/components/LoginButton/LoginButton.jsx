@@ -1,26 +1,48 @@
-import React, { Component } from 'react';
-import store from '../../redux/store';
+import React, { Component, Fragment } from 'react';
 
 class LoginButton extends Component {
-  handleClick = () => {
-    const { logged } = this.props;
+  state = {
+    username: '',
+  }
 
-    store.dispatch({
-      type: (logged ? 'LOG_OUT' : 'LOG_IN' ),
+  // sendLogin = () => {
+  //   const { dispatch } = this.props;
+  //   const { username } = this.state;
+
+  //   dispatch(loginAction(username));
+  // }
+
+  // sendLogout = () => {
+  //   const { dispatch } = this.props;
+
+  //   dispatch(logoutAction());
+  // }
+
+  handleUsernameChanged = (event) => {
+    this.setState({
+      username: event.target.value,
     });
   }
 
   render() {
-    const { logged } = this.props;
+    const { logged, login, logout } = this.props;
+    const { username } = this.state;
 
     return (
-      <button onClick={this.handleClick}>
+      <Fragment>
         { logged ?
-          'Se déconnecter'
+          <button onClick={logout}>
+            Se déconnecter
+          </button>
         :
-          'Se connecter'
+          <div>
+            <input type="text" value={username} onChange={this.handleUsernameChanged} />
+            <button onClick={() => login(username)}>
+              Se connecter
+            </button>
+          </div>
         }
-      </button>
+      </Fragment>
     );
   }
 }
